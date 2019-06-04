@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "295704630231",
+    "firebase_url": "https://com-warrenenskat.firebaseio.com",
+    "project_id": "com-warrenenskat",
+    "storage_bucket": "com-warrenenskat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:295704630231:android:e2b786b6f0b332aa",
+        "android_client_info": {
+          "package_name": "com.example.be_ai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "295704630231-vt3joqhjr09bcg2t449d8mk71kps36vs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFp_mQfG8O-ZmEf-tDTWojALJB7WeXzMM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "295704630231-vt3joqhjr09bcg2t449d8mk71kps36vs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "295704630231-lkgr05es33f1keoga0oh8km3t1n1bba6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.warrenenskat.newsreader"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -25,6 +25,10 @@ dependencies:
   cupertino_icons: ^0.1.2
   firebase_auth: ^0.6.6
   firebase_database: ^1.0.5
+  http: ^0.12.0+2
+  intl: ^0.15.8
+  flutter_html: ^0.8.2
+  flutter_youtube: "^1.1.6"
 
 dev_dependencies:
   flutter_test:

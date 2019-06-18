@@ -28,7 +28,9 @@ dependencies:
   http: ^0.12.0+2
   intl: ^0.15.8
   flutter_html: ^0.8.2
-  flutter_youtube: "^1.1.6"
+  share: ^0.6.1+1
+  # flutter_youtube_view: ^1.1.4
+  # flutter_youtube: "1.1.4"
 
 dev_dependencies:
   flutter_test:

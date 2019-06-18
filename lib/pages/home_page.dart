@@ -71,8 +71,9 @@ class _HomePageState extends State<HomePage> {
       String date =  data[i]['modified_gmt'].toString();
       String author = data[i]['author'].toString() == '4'?"Warren Enskat": data[i]['author'].toString();
       String content = data[i]['content']['rendered'].toString();
+      String articleLink = data[i]['link'].toString();
       
-      choices.add(new Choice( title: title, date : date,  description:  '', imglink:imgLink,author: author,content: content));
+      choices.add(new Choice( title: title, date : date,  description:  '', imglink:imgLink,author: author,content: content,articleLink: articleLink));
     }
   }
 

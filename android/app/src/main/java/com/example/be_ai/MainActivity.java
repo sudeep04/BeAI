@@ -1,4 +1,4 @@
-package com.example.be_ai;
+package com.beai.be_ai;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

@@ -1,18 +1,47 @@
 import 'package:be_ai/articlelist/article_list_item.dart';
+import 'package:be_ai/pages/MenuPages/AmAI.dart' as prefix1;
+import 'package:be_ai/pages/MenuPages/Bookmarks.dart' as prefix4;
+import 'package:be_ai/pages/MenuPages/DataVault.dart' as prefix3;
+import 'package:be_ai/pages/MenuPages/GeneralAI.dart' as prefix2;
+import 'package:be_ai/pages/MenuPages/Home.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'package:be_ai/services/authentication.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:be_ai/articlelist/article_list.dart';
 import 'package:be_ai/articlelist/modal/article.dart';
+import 'page.dart';
+import 'myDrawer.dart';
+import 'package:be_ai/pages/MenuPages/AMAI.dart';
+import 'package:be_ai/pages/MenuPages/bookmarks.dart';
+import 'package:be_ai/pages/MenuPages/ci.dart';
+import 'package:be_ai/pages/MenuPages/datavault.dart';
+import 'package:be_ai/pages/MenuPages/generalai.dart';
+import 'package:be_ai/pages/MenuPages/home.dart';
+
+class DrawerItem {
+  String title;
+  IconData icon;
+  DrawerItem(this.title, this.icon);
+}
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.auth, this.userId, this.onSignedOut})
+  HomePage({Key key, this.auth, this.userId, this.onSignedOut, this.userEmail})
       : super(key: key);
 
   final BaseAuth auth;
   final VoidCallback onSignedOut;
   final String userId;
+  final String userEmail;
+
+  final drawerItems = [
+    new DrawerItem("Home", Icons.home),
+    new DrawerItem("Asset Management AI", Icons.collections),
+    new DrawerItem("General AI", Icons.language),
+    new DrawerItem("Data Vault", Icons.trending_up),
+    new DrawerItem("Bookmarks", Icons.bookmark),
+    new DrawerItem("Competitive Intelligence", Icons.people)
+  ];
 
   @override
   State<StatefulWidget> createState() => new _HomePageState();
@@ -23,6 +52,33 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   bool _isEmailVerified = false;
+
+  int _selectedDrawerIndex = 0;
+
+  _getDrawerItemWidget(int pos) {
+    switch (pos) {
+      case 0:
+        return new prefix0.HomeFragment();
+      case 1:
+        return new prefix1.AmAI();
+      case 2:
+        return new prefix2.GeneralAI();
+      case 3:
+        return new prefix3.DataVault();
+      case 4:
+        return new prefix4.Bookmarks();
+      case 5:
+        return new CIPage();
+
+      default:
+        return new prefix0.HomeFragment();
+    }
+  }
+
+  _onSelectItem(int index) {
+    setState(() => _selectedDrawerIndex = index);
+    Navigator.of(context).pop(); // close the drawer
+  }
 
   @override
   void initState() {
@@ -168,6 +224,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+  List<Widget> drawerOptions = [];
+    for (var i = 0; i < widget.drawerItems.length; i++) {
+      var d = widget.drawerItems[i];
+      drawerOptions.add(
+        new ListTile(
+          leading: new Icon(d.icon),
+          title: new Text(d.title),
+          selected: i == _selectedDrawerIndex,
+          onTap: () => _onSelectItem(i),
+        )
+      );
+    }
+    
     return new Scaffold(
         appBar: new AppBar(
           title: new Text('BeAI App'),
@@ -178,7 +247,33 @@ class _HomePageState extends State<HomePage> {
                 onPressed: _signOut)
           ],
         ),
-        body: _showArticles(),
+              drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+                accountName: new Text(""), 
+                accountEmail: new Text(widget.userEmail),
+                currentAccountPicture: new GestureDetector(
+                child: new CircleAvatar(
+                  backgroundImage: new NetworkImage("https://demo.plantobuild.de/Content/icon-user.png"),
+                ),
+                onTap: () { print("This is your current account.");
+                  //Navigator.of(context).pop();
+                  Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new Page("User Settings")));
+                }
+              ), 
+              decoration: new BoxDecoration(
+                image: new DecorationImage(
+                  image: new NetworkImage("https://img00.deviantart.net/35f0/i/2015/018/2/6/low_poly_landscape__the_river_cut_by_bv_designs-d8eib00.jpg"),
+                  fit: BoxFit.fill
+                )
+              ),
+            ),   
+            new Column(children: drawerOptions)
+          ],
+        ),
+      ),
+        body: _getDrawerItemWidget(_selectedDrawerIndex), //_showArticles()
     );
   }
 }

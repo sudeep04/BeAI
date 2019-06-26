@@ -9,4 +9,4 @@ A new Flutter project for Be AI
 
 ## After Login
 
-![application screenshot](flutter_02.png "Home Page")
+![application screenshot](flutter_04.png "Home Page")

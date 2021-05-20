@@ -1,6 +1,9 @@
-# be_ai
+# BE AI
 
-A new Flutter project for Be AI
+BE AI App Mobile App.
+
+All the information related to AI is scraped using another tool and the information is kept in google firestore. 
+The App is used to display information from it.
 
 ## Login Screen
 
